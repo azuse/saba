@@ -239,6 +239,13 @@ int SabaViewerMain(const std::vector<std::string>& args)
 	{
 		viewer.ExecuteCommand(viewerCommand);
 	}
+	viewer.m_bgColor1.r = 1;
+	viewer.m_bgColor1.g = 1;
+	viewer.m_bgColor1.b = 1;
+	viewer.m_gridEnabled = false;
+
+
+
 
 	int ret = viewer.Run();
 

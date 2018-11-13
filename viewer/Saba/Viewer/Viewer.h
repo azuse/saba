@@ -216,7 +216,7 @@ namespace mmd
 			uint32_t	m_parallelUpdateCount;	//!< 0 - 16 (0:auto)
 		};
 
-	private:
+	public:
 		InitializeParameter	m_initParam;
 
 		ViewerContext	m_context;
