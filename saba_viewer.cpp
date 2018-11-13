@@ -12,7 +12,11 @@
 #include <sol.hpp>
 #include <fstream>
 #include <vector>
+#include <string.h>
+#include <windows.h>
+#include <Mmsystem.h>
 
+#pragma comment(lib,"winmm.lib")
 namespace
 {
 	/*
@@ -195,10 +199,17 @@ namespace
 		}
 		catch (sol::error e)
 		{
-			SABA_ERROR("Failed to load init.lua.\n{}", e.what());
+			ERROR("Failed to load init.lua.\n{}", e.what());
 		}
 	}
 } // namespace
+
+wchar_t *convertCharArrayToLPCWSTR(const char* charArray)
+{
+	wchar_t* wString = new wchar_t[256];
+	MultiByteToWideChar(CP_ACP, 0, charArray, -1, wString, 256);
+	return wString;
+}
 
 int SabaViewerMain(const std::vector<std::string>& args)
 {
@@ -239,13 +250,35 @@ int SabaViewerMain(const std::vector<std::string>& args)
 	{
 		viewer.ExecuteCommand(viewerCommand);
 	}
-	viewer.m_bgColor1.r = 1;
-	viewer.m_bgColor1.g = 1;
-	viewer.m_bgColor1.b = 1;
+	viewer.m_bgColor1.r = 0.92;
+	viewer.m_bgColor1.g = 0.24;
+	viewer.m_bgColor1.b = 0.33;
+	viewer.m_bgColor2.r = 0.92;
+	viewer.m_bgColor2.g = 0.24;
+	viewer.m_bgColor2.b = 0.33;
 	viewer.m_gridEnabled = false;
+	viewer.m_enableInfoUI = false;
+	viewer.m_enableLogUI = false;
+	viewer.m_enableCommandUI = false;
+	viewer.m_enableCtrlUI = false;
+	viewer.m_enableMoreInfoUI = false;
+	viewer.m_enableManip = false;
+	viewer.m_mouseLockMode = mmd::Viewer::MouseLockMode::Lock;
+	viewer.m_context.m_uiEnable = false;
+	std::vector<std::string> arg1;
+	arg1.emplace_back("default_model/default.pmx");
+	viewer.CmdOpen(arg1);
+	std::vector<std::string> arg2;
+	arg2.emplace_back("default_camera.vmd");
+	viewer.CmdOpen(arg2);
+	std::vector<std::string> arg3;
+	arg3.emplace_back("default_motion.vmd");
+	viewer.CmdOpen(arg3);
 
 
-
+	mciSendString(convertCharArrayToLPCWSTR("open default.mp3"), NULL, 0, 0);
+	viewer.m_context.m_playMode = mmd::ViewerContext::PlayMode::PlayStart;
+	mciSendString(convertCharArrayToLPCWSTR("play default.mp3"), NULL, 0, 0);
 
 	int ret = viewer.Run();
 

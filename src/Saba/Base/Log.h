@@ -111,7 +111,7 @@ namespace mmd
 #define WARN(message, ...)\
 	mmd::Warn(message, ##__VA_ARGS__)
 
-#define SABA_ERROR(message, ...)\
+#define ERROR(message, ...)\
 	mmd::Error(message, ##__VA_ARGS__)
 
 #define SABA_ASSERT(expr)\

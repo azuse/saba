@@ -42,7 +42,7 @@ namespace mmd
 				matShader.m_shaderIndex = m_drawContext->GetShaderIndex(define);
 				if (matShader.m_shaderIndex == -1)
 				{
-					SABA_ERROR("Faied to find XFile shader.");
+					ERROR("Faied to find XFile shader.");
 					return false;
 				}
 				if (!matShader.m_vao.Create())

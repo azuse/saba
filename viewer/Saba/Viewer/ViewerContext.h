@@ -86,7 +86,7 @@ namespace mmd
 
 		bool ResizeCaptureTexture();
 
-	private:
+	public:
 		std::string	m_workDir;
 		std::string	m_resourceDir;
 		std::string	m_shaderDir;

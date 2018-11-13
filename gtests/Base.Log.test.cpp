@@ -29,7 +29,7 @@ TEST(BaseTest, LogTest)
 
 	INFO("test1");
 	WARN("test2");
-	SABA_ERROR("test3");
+	ERROR("test3");
 
 	EXPECT_EQ(3, testSink->m_buffer.size());
 

@@ -46,12 +46,12 @@ namespace mmd
 			matShader.m_mmdShaderIndex = m_drawContext->GetShaderIndex(define);
 			if (matShader.m_mmdShaderIndex == -1)
 			{
-				SABA_ERROR("MMD Material Shader not found.");
+				ERROR("MMD Material Shader not found.");
 				return false;
 			}
 			if (!matShader.m_mmdVao.Create())
 			{
-				SABA_ERROR("Vertex Array Object Create fail.");
+				ERROR("Vertex Array Object Create fail.");
 				return false;
 			}
 
@@ -79,12 +79,12 @@ namespace mmd
 			matShader.m_mmdEdgeShaderIndex = m_drawContext->GetEdgeShaderIndex(define);
 			if (matShader.m_mmdEdgeShaderIndex == -1)
 			{
-				SABA_ERROR("MMD Edge Material Shader not found.");
+				ERROR("MMD Edge Material Shader not found.");
 				return false;
 			}
 			if (!matShader.m_mmdEdgeVao.Create())
 			{
-				SABA_ERROR("Vertex Array Object Create fail.");
+				ERROR("Vertex Array Object Create fail.");
 				return false;
 			}
 
@@ -105,7 +105,7 @@ namespace mmd
 			// Shadow
 			if (!matShader.m_shadowVao.Create())
 			{
-				SABA_ERROR("Vertex Array Object Create fail.");
+				ERROR("Vertex Array Object Create fail.");
 				return false;
 			}
 
@@ -123,12 +123,12 @@ namespace mmd
 			matShader.m_mmdGroundShadowShaderIndex = m_drawContext->GetGroundShadowShaderIndex(define);
 			if (matShader.m_mmdGroundShadowShaderIndex == -1)
 			{
-				SABA_ERROR("MMD Ground Shadow Material Shader not found.");
+				ERROR("MMD Ground Shadow Material Shader not found.");
 				return false;
 			}
 			if (!matShader.m_mmdGroundShadowVao.Create())
 			{
-				SABA_ERROR("Vertex Array Object Create fail.");
+				ERROR("Vertex Array Object Create fail.");
 				return false;
 			}
 

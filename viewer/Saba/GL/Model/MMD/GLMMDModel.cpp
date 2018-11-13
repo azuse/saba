@@ -92,7 +92,7 @@ namespace mmd
 			m_indexTypeSize = 4;
 			break;
 		default:
-			SABA_ERROR("Unknown Index Size. [{}]", indexElemSize);
+			ERROR("Unknown Index Size. [{}]", indexElemSize);
 			return false;
 		}
 

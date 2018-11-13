@@ -180,11 +180,11 @@ namespace mmd
 			m_context.EnableMSAA(true);
 			m_context.SetMSAACount(m_initParam.m_msaaCount);
 		}
-		m_window = glfwCreateWindow(1280, 800, "Saba Viewer", nullptr, nullptr);
+		m_window = glfwCreateWindow(1280, 800, "MMD Viewer", nullptr, nullptr);
 
 		if (m_window == nullptr)
 		{
-			SABA_ERROR("Window Create Fail.");
+			ERROR("Window Create Fail.");
 			return false;
 		}
 
@@ -219,13 +219,13 @@ namespace mmd
 		// gl3wの初期化
 		if (gl3wInit() != 0)
 		{
-			SABA_ERROR("gl3w Init Fail.");
+			ERROR("gl3w Init Fail.");
 			return false;
 		}
 
 		if (!m_context.Initialize())
 		{
-			SABA_ERROR("Failed to initialize ViewerContext.");
+			ERROR("Failed to initialize ViewerContext.");
 			return false;
 		}
 
@@ -235,7 +235,7 @@ namespace mmd
 		m_bgProg = glslShaderUtil.CreateProgram("bg");
 		if (m_bgProg.Get() == 0)
 		{
-			SABA_ERROR("'bg' Shader Create Fail.");
+			ERROR("'bg' Shader Create Fail.");
 			return false;
 		}
 		m_uColor1 = glGetUniformLocation(m_bgProg, "u_Color1");
@@ -246,18 +246,18 @@ namespace mmd
 		m_context.m_camera.Initialize(glm::vec3(0), 10.0f);
 		if (!m_grid.Initialize(m_context, 0.5f, 10, 5))
 		{
-			SABA_ERROR("grid Init Fail.");
+			ERROR("grid Init Fail.");
 			return false;
 		}
 
 		if (!m_context.m_shadowmap.InitializeShader(&m_context))
 		{
-			SABA_ERROR("shadowmap InitializeShader Fail.");
+			ERROR("shadowmap InitializeShader Fail.");
 			return false;
 		}
 		if (!m_context.m_shadowmap.Setup(1024, 1024, 4))
 		{
-			SABA_ERROR("shadowmap Setup Fail.");
+			ERROR("shadowmap Setup Fail.");
 			return false;
 		}
 
@@ -692,7 +692,7 @@ namespace mmd
 
 			if (!m_context.ResizeCaptureTexture())
 			{
-				SABA_ERROR("Failed to resize capture texture.");
+				ERROR("Failed to resize capture texture.");
 			}
 			// Setup capture framebuffer
 			{
@@ -1801,18 +1801,18 @@ namespace mmd
 					}
 					catch (sol::error e)
 					{
-						SABA_ERROR("command.lua execute fail.\n{}", e.what());
+						ERROR("command.lua execute fail.\n{}", e.what());
 					}
 				}
 				else
 				{
 					std::string errorMessage = cmd;
-					SABA_ERROR("command.lua load fail.\n{}", errorMessage);
+					ERROR("command.lua load fail.\n{}", errorMessage);
 				}
 			}
 			else
 			{
-				SABA_ERROR("command.lua read fail.");
+				ERROR("command.lua read fail.");
 			}
 		}
 		else
@@ -2598,7 +2598,7 @@ namespace mmd
 		// Reset Grid
 		if (!m_grid.Initialize(m_context, m_sceneUnitScale, 10, 5))
 		{
-			SABA_ERROR("grid Init Fail.");
+			ERROR("grid Init Fail.");
 			return false;
 		}
 
@@ -2707,6 +2707,7 @@ namespace mmd
 
 	void Viewer::OnMouseButton(int button, int action, int mods)
 	{
+		return;
 		auto prevCameraMode = m_cameraMode;
 		if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 		{
@@ -2753,6 +2754,7 @@ namespace mmd
 
 	void Viewer::OnScrollStub(GLFWwindow * window, double offsetx, double offsety)
 	{
+		return;
 		ImGui_ImplGlfwGL3_ScrollCallback(window, offsetx, offsety);
 
 		Viewer* viewer = (Viewer*)glfwGetWindowUserPointer(window);
@@ -2764,11 +2766,13 @@ namespace mmd
 
 	void Viewer::OnScroll(double offsetx, double offsety)
 	{
+		return;
 		m_mouse.SetScroll(offsetx, offsety);
 	}
 
 	void Viewer::OnKeyStub(GLFWwindow * window, int key, int scancode, int action, int mods)
 	{
+		return;
 		ImGui_ImplGlfwGL3_KeyCallback(window, key, scancode, action, mods);
 
 		Viewer* viewer = (Viewer*)glfwGetWindowUserPointer(window);
@@ -2780,6 +2784,7 @@ namespace mmd
 
 	void Viewer::OnKey(int key, int scancode, int action, int mods)
 	{
+		return;
 		if (key == GLFW_KEY_F1 && action == GLFW_PRESS)
 		{
 			m_context.EnableUI(!m_context.IsUIEnabled());

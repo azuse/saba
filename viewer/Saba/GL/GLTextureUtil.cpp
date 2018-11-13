@@ -532,7 +532,7 @@ namespace mmd
 		GLTextureObject tex;
 		if (!tex.Create())
 		{
-			SABA_ERROR("Texture Create fail.");
+			ERROR("Texture Create fail.");
 			return GLTextureObject();
 		}
 

@@ -66,7 +66,7 @@ namespace mmd
 
 		bool ExecuteCommand(const ViewerCommand& cmd);
 
-	private:
+	public:
 		struct Mouse
 		{
 			Mouse();
@@ -100,7 +100,7 @@ namespace mmd
 			Lock,
 		};
 
-	private:
+	public:
 		using ModelDrawerPtr = std::shared_ptr<ModelDrawer>;
 
 		void SetupSjisGryphRanges();

@@ -109,7 +109,7 @@ namespace mmd
 			shader->m_prog = glslShaderUtil.CreateProgram("mmd");
 			if (shader->m_prog == 0)
 			{
-				SABA_ERROR("Shader Create fail.");
+				ERROR("Shader Create fail.");
 				return -1;
 			}
 
@@ -127,7 +127,7 @@ namespace mmd
 	{
 		if (shaderIndex < 0)
 		{
-			SABA_ERROR("shaderIndex < 0");
+			ERROR("shaderIndex < 0");
 			return nullptr;
 		}
 
@@ -157,7 +157,7 @@ namespace mmd
 			shader->m_prog = glslShaderUtil.CreateProgram("mmd_edge");
 			if (shader->m_prog == 0)
 			{
-				SABA_ERROR("Shader Create fail.");
+				ERROR("Shader Create fail.");
 				return -1;
 			}
 
@@ -175,7 +175,7 @@ namespace mmd
 	{
 		if (shaderIndex < 0)
 		{
-			SABA_ERROR("shaderIndex < 0");
+			ERROR("shaderIndex < 0");
 			return nullptr;
 		}
 
@@ -205,7 +205,7 @@ namespace mmd
 			shader->m_prog = glslShaderUtil.CreateProgram("mmd_ground_shadow");
 			if (shader->m_prog == 0)
 			{
-				SABA_ERROR("Shader Create fail.");
+				ERROR("Shader Create fail.");
 				return -1;
 			}
 
@@ -224,7 +224,7 @@ namespace mmd
 	{
 		if (groundShadowShaderIndex < 0)
 		{
-			SABA_ERROR("shaderIndex < 0");
+			ERROR("shaderIndex < 0");
 			return nullptr;
 		}
 

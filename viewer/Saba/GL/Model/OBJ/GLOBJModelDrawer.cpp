@@ -68,7 +68,7 @@ namespace mmd
 			matShader.m_objShaderIndex = m_drawContext->GetShaderIndex(define);
 			if (matShader.m_objShaderIndex == -1)
 			{
-				SABA_ERROR("OBJ Material Shader not found");
+				ERROR("OBJ Material Shader not found");
 				return false;
 			}
 			if (!matShader.m_vao.Create())

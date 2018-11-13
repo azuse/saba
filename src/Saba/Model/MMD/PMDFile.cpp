@@ -38,13 +38,13 @@ namespace mmd
 
 			if (header.m_magic.ToString() != "Pmd")
 			{
-				SABA_ERROR("PMD Header Error.");
+				ERROR("PMD Header Error.");
 				return false;
 			}
 
 			if (header.m_version != 1.0f)
 			{
-				SABA_ERROR("PMD Version Error.");
+				ERROR("PMD Version Error.");
 				return false;
 			}
 
@@ -436,55 +436,55 @@ namespace mmd
 		{
 			if (!ReadHeader(pmdFile, file))
 			{
-				SABA_ERROR("ReadHeader Fail.");
+				ERROR("ReadHeader Fail.");
 				return false;
 			}
 
 			if (!ReadVertex(pmdFile, file))
 			{
-				SABA_ERROR("ReadVertex Fail.");
+				ERROR("ReadVertex Fail.");
 				return false;
 			}
 
 			if (!ReadFace(pmdFile, file))
 			{
-				SABA_ERROR("ReadFace Fail.");
+				ERROR("ReadFace Fail.");
 				return false;
 			}
 
 			if (!ReadMaterial(pmdFile, file))
 			{
-				SABA_ERROR("ReadMaterial Fail.");
+				ERROR("ReadMaterial Fail.");
 				return false;
 			}
 
 			if (!ReadBone(pmdFile, file))
 			{
-				SABA_ERROR("ReadBone Fail.");
+				ERROR("ReadBone Fail.");
 				return false;
 			}
 
 			if (!ReadIK(pmdFile, file))
 			{
-				SABA_ERROR("ReadIK Fail.");
+				ERROR("ReadIK Fail.");
 				return false;
 			}
 
 			if (!ReadBlendShape(pmdFile, file))
 			{
-				SABA_ERROR("ReadBlendShape Fail.");
+				ERROR("ReadBlendShape Fail.");
 				return false;
 			}
 
 			if (!ReadBlendShapeDisplayList(pmdFile, file))
 			{
-				SABA_ERROR("ReadBlendShapeDisplayList Fail.");
+				ERROR("ReadBlendShapeDisplayList Fail.");
 				return false;
 			}
 
 			if (!ReadBoneDisplayList(pmdFile, file))
 			{
-				SABA_ERROR("ReadBoneDisplayList Fail.");
+				ERROR("ReadBoneDisplayList Fail.");
 				return false;
 			}
 
@@ -502,7 +502,7 @@ namespace mmd
 			{
 				if (!ReadExt(pmdFile, file))
 				{
-					SABA_ERROR("ReadExt Fail.");
+					ERROR("ReadExt Fail.");
 					return false;
 				}
 			}
@@ -511,7 +511,7 @@ namespace mmd
 			{
 				if (!ReadToonTextureName(pmdFile, file))
 				{
-					SABA_ERROR("ReadToonTextureName Fail.");
+					ERROR("ReadToonTextureName Fail.");
 					return false;
 				}
 			}
@@ -520,7 +520,7 @@ namespace mmd
 			{
 				if (!ReadRigidBodyExt(pmdFile, file))
 				{
-					SABA_ERROR("ReadRigidBodyExt Fail.");
+					ERROR("ReadRigidBodyExt Fail.");
 					return false;
 				}
 			}
@@ -529,7 +529,7 @@ namespace mmd
 			{
 				if (!ReadJointExt(pmdFile, file))
 				{
-					SABA_ERROR("ReadJointExt Fail.");
+					ERROR("ReadJointExt Fail.");
 					return false;
 				}
 			}

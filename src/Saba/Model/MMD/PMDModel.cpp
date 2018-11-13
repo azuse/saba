@@ -532,7 +532,7 @@ namespace mmd
 
 		if (!m_physicsMan.Create())
 		{
-			SABA_ERROR("Create Physics Fail.");
+			ERROR("Create Physics Fail.");
 			return false;
 		}
 
@@ -546,7 +546,7 @@ namespace mmd
 			}
 			if (!rb->Create(pmdRB, this, node))
 			{
-				SABA_ERROR("Create Rigid Body Fail.\n");
+				ERROR("Create Rigid Body Fail.\n");
 				return false;
 			}
 			m_physicsMan.GetMMDPhysics()->AddRigidBody(rb);
@@ -568,7 +568,7 @@ namespace mmd
 				);
 				if (!ret)
 				{
-					SABA_ERROR("Create Joint Fail.\n");
+					ERROR("Create Joint Fail.\n");
 					return false;
 				}
 				m_physicsMan.GetMMDPhysics()->AddJoint(joint);

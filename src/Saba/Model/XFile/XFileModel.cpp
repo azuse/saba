@@ -92,14 +92,14 @@ namespace mmd
 				const size_t numFaces = xfileMesh.m_positionFaces.size();
 				if (numFaces != xfileMesh.m_normalFaces.size() || numFaces != xfileMesh.m_faceMaterials.size())
 				{
-					SABA_ERROR("XFile face size error.");
+					ERROR("XFile face size error.");
 					return false;
 				}
 
 				// check uv num
 				if (xfileMesh.m_positions.size() != xfileMesh.m_textureCoords.size())
 				{
-					SABA_ERROR("XFile uv size error.");
+					ERROR("XFile uv size error.");
 					return false;
 				}
 

@@ -402,7 +402,7 @@ namespace mmd
 				break;
 			default:
 				vtxBoneInfo.m_skinningType = SkinningType::Weight1;
-				SABA_ERROR("Unknown PMX Vertex Weight Type: {}", (int)v.m_weightType);
+				ERROR("Unknown PMX Vertex Weight Type: {}", (int)v.m_weightType);
 				break;
 			}
 			m_vertexBoneInfos.push_back(vtxBoneInfo);
@@ -468,7 +468,7 @@ namespace mmd
 			break;
 		}
 		default:
-			SABA_ERROR("Unsupported Index Size: [{}]", m_indexElementSize);
+			ERROR("Unsupported Index Size: [{}]", m_indexElementSize);
 			return false;
 		}
 
@@ -796,7 +796,7 @@ namespace mmd
 		// Physics
 		if (!m_physicsMan.Create())
 		{
-			SABA_ERROR("Create Physics Fail.");
+			ERROR("Create Physics Fail.");
 			return false;
 		}
 
@@ -810,7 +810,7 @@ namespace mmd
 			}
 			if (!rb->Create(pmxRB, this, node))
 			{
-				SABA_ERROR("Create Rigid Body Fail.\n");
+				ERROR("Create Rigid Body Fail.\n");
 				return false;
 			}
 			m_physicsMan.GetMMDPhysics()->AddRigidBody(rb);
@@ -832,7 +832,7 @@ namespace mmd
 				);
 				if (!ret)
 				{
-					SABA_ERROR("Create Joint Fail.\n");
+					ERROR("Create Joint Fail.\n");
 					return false;
 				}
 				m_physicsMan.GetMMDPhysics()->AddJoint(joint);

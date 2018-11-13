@@ -84,7 +84,7 @@ namespace mmd
 	{
 		if (shaderIndex < 0)
 		{
-			SABA_ERROR("shaderIndex < 0");
+			ERROR("shaderIndex < 0");
 			return nullptr;
 		}
 
