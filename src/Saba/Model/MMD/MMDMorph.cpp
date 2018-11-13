@@ -5,7 +5,7 @@
 
 #include "MMDMorph.h"
 
-namespace saba
+namespace mmd
 {
 	MMDMorph::MMDMorph()
 		: m_weight(0)

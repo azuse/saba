@@ -9,7 +9,7 @@
 #include <string>
 #include <array>
 
-namespace saba
+namespace mmd
 {
 	std::wstring ToWString(const std::string& utf8Str);
 	std::string ToUtf8String(const std::wstring& wStr);

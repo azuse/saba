@@ -5,7 +5,7 @@
 
 #include "MMDMaterial.h"
 
-namespace saba
+namespace mmd
 {
 	MMDMaterial::MMDMaterial()
 		: m_diffuse(1)

@@ -10,7 +10,7 @@
 #include "../../GLVertexUtil.h"
 #include <Saba/Model/XFile/XFileModel.h>
 
-namespace saba
+namespace mmd
 {
 	class ViewerContext;
 

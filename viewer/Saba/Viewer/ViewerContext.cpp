@@ -16,7 +16,7 @@
 #include <unistd.h>
 #endif // _WIN32
 
-namespace saba
+namespace mmd
 {
 	ViewerContext::ViewerContext()
 		: m_uiEnable(true)

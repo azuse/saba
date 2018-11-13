@@ -18,7 +18,7 @@
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 
-namespace saba
+namespace mmd
 {
 	struct MMDMaterial;
 	class MMDPhysics;

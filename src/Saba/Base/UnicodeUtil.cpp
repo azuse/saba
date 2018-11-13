@@ -7,7 +7,7 @@
 
 #include <stdexcept>
 
-namespace saba
+namespace mmd
 {
 	std::wstring ToWString(const std::string & utf8Str)
 	{

@@ -31,16 +31,16 @@ namespace
 
 TEST(BaseTest, Singleton)
 {
-	auto inst = saba::Singleton<SingletonTest>::Get();
+	auto inst = mmd::Singleton<SingletonTest>::Get();
 
 	EXPECT_NE(nullptr, inst);
 
 	// コンストラクタが呼ばれていることを確認
-	EXPECT_EQ(0, saba::Singleton<SingletonTest>::Get()->m_value);
+	EXPECT_EQ(0, mmd::Singleton<SingletonTest>::Get()->m_value);
 
 	// 同一のインスタンスでAddが呼ばれていることを確認
-	saba::Singleton<SingletonTest>::Get()->Add();
-	EXPECT_EQ(1, saba::Singleton<SingletonTest>::Get()->m_value);
+	mmd::Singleton<SingletonTest>::Get()->Add();
+	EXPECT_EQ(1, mmd::Singleton<SingletonTest>::Get()->m_value);
 
 	// コンストラクターが一度しか呼ばれていないことを確認
 	EXPECT_EQ(1, SingletonTest::m_construct);

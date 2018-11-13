@@ -28,7 +28,7 @@ class btSequentialImpulseConstraintSolver;
 class btMotionState;
 struct btOverlapFilterCallback;
 
-namespace saba
+namespace mmd
 {
 	class MMDPhysics;
 	class MMDModel;

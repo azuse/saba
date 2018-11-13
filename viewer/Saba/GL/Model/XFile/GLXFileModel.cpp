@@ -10,7 +10,7 @@
 #include "../../../Viewer/ViewerContext.h"
 #include "../../GLTextureUtil.h"
 
-namespace saba
+namespace mmd
 {
 	GLXFileModel::GLXFileModel()
 	{

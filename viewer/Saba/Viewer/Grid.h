@@ -11,7 +11,7 @@
 #include "../GL/GLObject.h"
 #include "../GL/GLVertexUtil.h"
 
-namespace saba
+namespace mmd
 {
 	class Grid
 	{

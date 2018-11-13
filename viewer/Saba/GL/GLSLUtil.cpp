@@ -24,7 +24,7 @@ extern "C"
 #include <fpp.h>
 }
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{
@@ -583,7 +583,7 @@ namespace saba
 			auto errorMessage = fppData.m_error.str();
 			if (!errorMessage.empty())
 			{
-				SABA_WARN("GLSL Preprocess Message:\n{}", errorMessage);
+				WARN("GLSL Preprocess Message:\n{}", errorMessage);
 			}
 			if (outMessage != nullptr)
 			{
@@ -622,11 +622,11 @@ namespace saba
 
 		std::string vsCode;
 		{
-			SABA_INFO("Vertex Shader File Open. {}", vsFilePath);
+			INFO("Vertex Shader File Open. {}", vsFilePath);
 			TextFileReader glslFile(vsFilePath);
 			if (!glslFile.IsOpen())
 			{
-				SABA_WARN("Open fail.");
+				WARN("Open fail.");
 				return GLProgramObject();
 			}
 			vsCode = glslFile.ReadAll();
@@ -634,11 +634,11 @@ namespace saba
 
 		std::string fsCode;
 		{
-			SABA_INFO("Fragment Shader File Open. {}", fsFilePath);
+			INFO("Fragment Shader File Open. {}", fsFilePath);
 			TextFileReader glslFile(fsFilePath);
 			if (!glslFile.IsOpen())
 			{
-				SABA_WARN("Open fail.");
+				WARN("Open fail.");
 				return GLProgramObject();
 			}
 			fsCode = glslFile.ReadAll();

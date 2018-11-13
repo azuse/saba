@@ -10,7 +10,7 @@
 
 #include <algorithm>
 
-namespace saba
+namespace mmd
 {
 	void GLMMDShader::Initialize()
 	{

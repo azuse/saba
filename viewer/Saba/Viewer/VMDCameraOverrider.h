@@ -11,7 +11,7 @@
 #include <Saba/Model/MMD/VMDFile.h>
 #include <Saba/Model/MMD/VMDCameraAnimation.h>
 
-namespace saba
+namespace mmd
 {
 	class VMDCameraOverrider : public CameraOverrider
 	{

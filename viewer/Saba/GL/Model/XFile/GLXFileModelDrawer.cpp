@@ -11,7 +11,7 @@
 #include "../../GLShaderUtil.h"
 #include <Saba/Base/Log.h>
 
-namespace saba
+namespace mmd
 {
 	GLXFileModelDrawer::GLXFileModelDrawer(GLXFileModelDrawContext* ctxt, std::shared_ptr<GLXFileModel> model)
 		: m_drawContext(ctxt)
@@ -47,7 +47,7 @@ namespace saba
 				}
 				if (!matShader.m_vao.Create())
 				{
-					SABA_WARN("Failed to create Vertex Array Object.");
+					WARN("Failed to create Vertex Array Object.");
 					return false;
 				}
 

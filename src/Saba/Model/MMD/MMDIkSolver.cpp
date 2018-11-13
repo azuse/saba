@@ -9,7 +9,7 @@
 #include <functional>
 #include <glm/gtc/matrix_transform.hpp>
 
-namespace saba
+namespace mmd
 {
 	MMDIkSolver::MMDIkSolver()
 		: m_ikNode(nullptr)

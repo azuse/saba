@@ -19,14 +19,16 @@ namespace
 	@brief	"init.json" から初期化設定を読み込む
 	*/
 	void ReadInitParameterFromJson(
-		saba::Viewer::InitializeParameter&	viewerInitParam,
-		std::vector<saba::ViewerCommand>&	viewerCommands
+		mmd::Viewer::InitializeParameter&	viewerInitParam,
+		std::vector<mmd::ViewerCommand>&	viewerCommands
 	)
 	{
-		bool msaaEnable = false;
+		bool msaaEnable = true;
 		int msaaCount = 4;
 		std::ifstream initJsonFile;
 		initJsonFile.open("init.json");
+		viewerInitParam.m_msaaEnable = true;
+		viewerInitParam.m_msaaCount = 8;
 		if (initJsonFile.is_open())
 		{
 			picojson::value val;
@@ -50,7 +52,7 @@ namespace
 				{
 					if (command.is<picojson::object>())
 					{
-						saba::ViewerCommand viewerCmd;
+						mmd::ViewerCommand viewerCmd;
 						auto& cmdObj = command.get<picojson::object>();
 						if (cmdObj["Cmd"].is<std::string>())
 						{
@@ -78,8 +80,8 @@ namespace
 	*/
 	void ReadInitParameterFromLua(
 		const std::vector<std::string>&		args,
-		saba::Viewer::InitializeParameter&	viewerInitParam,
-		std::vector<saba::ViewerCommand>&	viewerCommands
+		mmd::Viewer::InitializeParameter&	viewerInitParam,
+		std::vector<mmd::ViewerCommand>&	viewerCommands
 	)
 	{
 
@@ -173,7 +175,7 @@ namespace
 					for (auto cmdIt = commands.begin(); cmdIt != commands.end(); ++cmdIt)
 					{
 						sol::table cmd = (*cmdIt).second;
-						saba::ViewerCommand viewerCmd;
+						mmd::ViewerCommand viewerCmd;
 						std::string cmdText = cmd["Cmd"].get_or(std::string(""));
 						viewerCmd.SetCommand(cmdText);
 						sol::object argsObj = cmd["Args"];
@@ -200,32 +202,32 @@ namespace
 
 int SabaViewerMain(const std::vector<std::string>& args)
 {
-	SABA_INFO("Start");
-	saba::Viewer viewer;
-	saba::Viewer::InitializeParameter	viewerInitParam;
-	std::vector<saba::ViewerCommand>	viewerCommands;
+	INFO("Start");
+	mmd::Viewer viewer;
+	mmd::Viewer::InitializeParameter	viewerInitParam;
+	std::vector<mmd::ViewerCommand>	viewerCommands;
 
 	ReadInitParameterFromJson(viewerInitParam, viewerCommands);
 	ReadInitParameterFromLua(args, viewerInitParam, viewerCommands);
 
 	if (viewerInitParam.m_msaaEnable)
 	{
-		SABA_INFO("Enable MSAA");
+		INFO("Enable MSAA");
 
 		if (viewerInitParam.m_msaaCount != 2 &&
 			viewerInitParam.m_msaaCount != 4 &&
 			viewerInitParam.m_msaaCount != 8
 			)
 		{
-			SABA_WARN("MSAA Count Force Change : 4");
+			WARN("MSAA Count Force Change : 4");
 			viewerInitParam.m_msaaCount = 4;
 		}
 
-		SABA_INFO("MSAA Count : {}", viewerInitParam.m_msaaCount);
+		INFO("MSAA Count : {}", viewerInitParam.m_msaaCount);
 	}
 	else
 	{
-		SABA_INFO("Disable MSAA");
+		INFO("Disable MSAA");
 	}
 
 	if (!viewer.Initialize(viewerInitParam))
@@ -242,7 +244,7 @@ int SabaViewerMain(const std::vector<std::string>& args)
 
 	viewer.Uninitislize();
 
-	SABA_INFO("Exit");
+	INFO("Exit");
 
 	return ret;
 }
@@ -263,7 +265,7 @@ int main(int argc, char** argv)
 		WCHAR** wArgs = CommandLineToArgvW(cmdline, &wArgc);
 		for (int i = 0; i < argc; i++)
 		{
-			args[i] = saba::ToUtf8String(wArgs[i]);
+			args[i] = mmd::ToUtf8String(wArgs[i]);
 		}
 	}
 #else // _WIN32
@@ -274,7 +276,7 @@ int main(int argc, char** argv)
 #endif
 
 	auto ret = SabaViewerMain(args);
-	saba::SingletonFinalizer::Finalize();
+	mmd::SingletonFinalizer::Finalize();
 	return ret;
 }
 

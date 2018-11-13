@@ -8,7 +8,7 @@
 
 #include <string>
 
-namespace saba
+namespace mmd
 {
 	class MMDMorph
 	{

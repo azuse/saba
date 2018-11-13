@@ -12,7 +12,7 @@
 #include <vector>
 #include <glm/mat4x4.hpp>
 
-namespace saba
+namespace mmd
 {
 	class Camera;
 	class Light;

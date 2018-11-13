@@ -12,7 +12,7 @@
 
 #include <glm/glm.hpp>
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{

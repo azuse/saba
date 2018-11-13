@@ -5,7 +5,7 @@
 
 #include "Light.h"
 
-namespace saba
+namespace mmd
 {
 	Light::Light()
 		: m_lightColor(0.6f)

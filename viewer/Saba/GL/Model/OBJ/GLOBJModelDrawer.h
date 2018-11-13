@@ -13,7 +13,7 @@
 
 #include <glm/mat4x4.hpp>
 
-namespace saba
+namespace mmd
 {
 	class GLOBJModel;
 	class GLOBJModelDrawContext;

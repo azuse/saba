@@ -10,7 +10,7 @@
 #include <Saba/GL/GLSLUtil.h>
 #include <Saba/GL/GLShaderUtil.h>
 
-namespace saba
+namespace mmd
 {
 	Grid::Grid()
 	{

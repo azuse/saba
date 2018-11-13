@@ -31,7 +31,7 @@
 #include <memory>
 #include <deque>
 
-namespace saba
+namespace mmd
 {
 	class ImGUILogSink;
 

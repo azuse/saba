@@ -15,7 +15,7 @@
 #include <array>
 #include <string>
 
-namespace saba
+namespace mmd
 {
 	template <size_t Size>
 	using PMDString = MMDFileString<Size>;

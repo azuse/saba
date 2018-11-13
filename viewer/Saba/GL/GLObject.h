@@ -9,7 +9,7 @@
 #include <atomic>
 #include <GL/gl3w.h>
 
-namespace saba
+namespace mmd
 {
 
 	template <GLenum ShaderType>

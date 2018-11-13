@@ -13,7 +13,7 @@
 #include <spdlog/spdlog.h>
 #include <assert.h>
 
-namespace saba
+namespace mmd
 {
 	class DefaultSink : public spdlog::sinks::sink
 	{
@@ -105,14 +105,14 @@ namespace saba
 	}
 }
 
-#define SABA_INFO(message, ...)\
-	saba::Info(message, ##__VA_ARGS__)
+#define INFO(message, ...)\
+	mmd::Info(message, ##__VA_ARGS__)
 
-#define SABA_WARN(message, ...)\
-	saba::Warn(message, ##__VA_ARGS__)
+#define WARN(message, ...)\
+	mmd::Warn(message, ##__VA_ARGS__)
 
 #define SABA_ERROR(message, ...)\
-	saba::Error(message, ##__VA_ARGS__)
+	mmd::Error(message, ##__VA_ARGS__)
 
 #define SABA_ASSERT(expr)\
 	assert(expr)

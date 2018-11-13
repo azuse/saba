@@ -14,7 +14,7 @@
 #include <string>
 
 
-namespace saba
+namespace mmd
 {
 	template <size_t Size>
 	struct MMDFileString
@@ -50,7 +50,7 @@ namespace saba
 		const char* ToCString() const { return m_buffer; }
 		std::string ToString() const { return std::string(m_buffer); }
 		std::wstring ToWString() const { return ConvertSjisToWString(m_buffer); }
-		std::string ToUtf8String() const { return saba::ToUtf8String(ToWString()); }
+		std::string ToUtf8String() const { return mmd::ToUtf8String(ToWString()); }
 
 		char	m_buffer[Size + 1];
 	};

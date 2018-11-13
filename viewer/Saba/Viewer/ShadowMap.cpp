@@ -19,7 +19,7 @@
 #undef max
 #endif
 
-namespace saba
+namespace mmd
 {
 	ShadowMap::ShadowMap()
 		: m_splitCount(4)
@@ -74,7 +74,7 @@ namespace saba
 			auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 			if (GL_FRAMEBUFFER_COMPLETE != status)
 			{
-				SABA_WARN("Shadowmap Framebuffer status : {}", status);
+				WARN("Shadowmap Framebuffer status : {}", status);
 				glBindFramebuffer(GL_FRAMEBUFFER, 0);
 				return false;
 			}

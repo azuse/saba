@@ -14,7 +14,7 @@
 
 #endif // _WIN32
 
-namespace saba
+namespace mmd
 {
 	DefaultSink::DefaultSink()
 	{

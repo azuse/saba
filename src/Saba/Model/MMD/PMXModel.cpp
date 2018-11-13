@@ -28,7 +28,7 @@
 #include <mutex>
 #include <condition_variable>
 
-namespace saba
+namespace mmd
 {
 	PMXModel::PMXModel()
 		: m_parallelUpdateCount(0)
@@ -388,7 +388,7 @@ namespace saba
 				vtxBoneInfo.m_boneIndex[3] = -1;
 				if (!warnSDEF)
 				{
-					SABA_WARN("SDEF Not Surpported: Use Dual Quaternion");
+					WARN("SDEF Not Surpported: Use Dual Quaternion");
 					warnSDEF = true;
 				}
 				break;
@@ -396,7 +396,7 @@ namespace saba
 				vtxBoneInfo.m_skinningType = SkinningType::DualQuaternion;
 				if (!infoQDEF)
 				{
-					SABA_INFO("Use QDEF");
+					INFO("Use QDEF");
 					infoQDEF = true;
 				}
 				break;
@@ -740,7 +740,7 @@ namespace saba
 			}
 			else
 			{
-				SABA_WARN("Not Supported Morp Type({}): [{}]",
+				WARN("Not Supported Morp Type({}): [{}]",
 					(uint8_t)pmxMorph.m_morphType,
 					pmxMorph.m_name
 				);
@@ -770,7 +770,7 @@ namespace saba
 						);
 						if (findIt != groupMorphStack.end())
 						{
-							SABA_WARN("Infinit Group Morph:[{}][{}][{}]",
+							WARN("Infinit Group Morph:[{}][{}][{}]",
 								morphIdx, morph->GetName(), i
 							);
 							groupMorph.m_morphIndex = -1;
@@ -839,7 +839,7 @@ namespace saba
 			}
 			else
 			{
-				SABA_WARN("Illegal Joint [{}]", pmxJoint.m_name.c_str());
+				WARN("Illegal Joint [{}]", pmxJoint.m_name.c_str());
 			}
 		}
 
@@ -876,11 +876,11 @@ namespace saba
 		size_t maxParallelCount = std::max(size_t(16), size_t(std::thread::hardware_concurrency()));
 		if (m_parallelUpdateCount > maxParallelCount)
 		{
-			SABA_WARN("PMXModel::SetParallelUpdateCount parallelCount > {}", maxParallelCount);
+			WARN("PMXModel::SetParallelUpdateCount parallelCount > {}", maxParallelCount);
 			m_parallelUpdateCount = 16;
 		}
 
-		SABA_INFO("Select PMX Parallel Update Count : {}", m_parallelUpdateCount);
+		INFO("Select PMX Parallel Update Count : {}", m_parallelUpdateCount);
 
 		m_updateRanges.resize(m_parallelUpdateCount);
 		m_parallelUpdateFutures.resize(m_parallelUpdateCount - 1);
@@ -1164,13 +1164,13 @@ namespace saba
 				auto& mat = m_materials[mi];
 				switch (matMorph.m_opType)
 				{
-				case saba::PMXMorph::MaterialMorph::OpType::Mul:
+				case mmd::PMXMorph::MaterialMorph::OpType::Mul:
 					m_mulMaterialFactors[mi].Mul(
 						MaterialFactor(matMorph),
 						weight
 					);
 					break;
-				case saba::PMXMorph::MaterialMorph::OpType::Add:
+				case mmd::PMXMorph::MaterialMorph::OpType::Add:
 					m_addMaterialFactors[mi].Add(
 						MaterialFactor(matMorph),
 						weight
@@ -1184,7 +1184,7 @@ namespace saba
 			{
 				switch (matMorph.m_opType)
 				{
-				case saba::PMXMorph::MaterialMorph::OpType::Mul:
+				case mmd::PMXMorph::MaterialMorph::OpType::Mul:
 					for (size_t i = 0; i < m_materials.size(); i++)
 					{
 						m_mulMaterialFactors[i].Mul(
@@ -1193,7 +1193,7 @@ namespace saba
 						);
 					}
 					break;
-				case saba::PMXMorph::MaterialMorph::OpType::Add:
+				case mmd::PMXMorph::MaterialMorph::OpType::Add:
 					for (size_t i = 0; i < m_materials.size(); i++)
 					{
 						m_addMaterialFactors[i].Add(
@@ -1332,7 +1332,7 @@ namespace saba
 			* glm::scale(glm::mat4(1), s);
 	}
 
-	PMXModel::MaterialFactor::MaterialFactor(const saba::PMXMorph::MaterialMorph & pmxMat)
+	PMXModel::MaterialFactor::MaterialFactor(const mmd::PMXMorph::MaterialMorph & pmxMat)
 	{
 		m_diffuse.r = pmxMat.m_diffuse.r;
 		m_diffuse.g = pmxMat.m_diffuse.g;

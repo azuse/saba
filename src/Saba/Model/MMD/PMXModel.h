@@ -19,7 +19,7 @@
 #include <algorithm>
 #include <future>
 
-namespace saba
+namespace mmd
 {
 	class PMXNode : public MMDNode
 	{
@@ -165,7 +165,7 @@ namespace saba
 		struct MaterialFactor
 		{
 			MaterialFactor() = default;
-			MaterialFactor(const saba::PMXMorph::MaterialMorph& pmxMat);
+			MaterialFactor(const mmd::PMXMorph::MaterialMorph& pmxMat);
 
 			void Mul(const MaterialFactor& val, float weight);
 			void Add(const MaterialFactor& val, float weight);
@@ -184,7 +184,7 @@ namespace saba
 
 		struct MaterialMorphData
 		{
-			std::vector<saba::PMXMorph::MaterialMorph>	m_materialMorphs;
+			std::vector<mmd::PMXMorph::MaterialMorph>	m_materialMorphs;
 		};
 
 		struct BoneMorphElement
@@ -201,7 +201,7 @@ namespace saba
 
 		struct GroupMorphData
 		{
-			std::vector<saba::PMXMorph::GroupMorph>		m_groupMorphs;
+			std::vector<mmd::PMXMorph::GroupMorph>		m_groupMorphs;
 		};
 
 		enum class MorphType

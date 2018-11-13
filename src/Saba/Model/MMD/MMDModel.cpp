@@ -12,7 +12,7 @@
 
 #include <Saba/Base/Log.h>
 
-namespace saba
+namespace mmd
 {
 	MMDPhysicsManager::MMDPhysicsManager()
 	{

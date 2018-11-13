@@ -86,12 +86,12 @@ bool MMD2Obj(const std::vector<std::string>& args)
 	}
 
 	// Load model.
-	std::shared_ptr<saba::MMDModel> mmdModel;
+	std::shared_ptr<mmd::MMDModel> mmdModel;
 	std::string mmdDataPath = "";	// Set MMD data path(default toon texture path).
-	std::string ext = saba::PathUtil::GetExt(modelPath);
+	std::string ext = mmd::PathUtil::GetExt(modelPath);
 	if (ext == "pmd")
 	{
-		auto pmdModel = std::make_unique<saba::PMDModel>();
+		auto pmdModel = std::make_unique<mmd::PMDModel>();
 		if (!pmdModel->Load(modelPath, mmdDataPath))
 		{
 			std::cout << "Failed to load PMDModel.\n";
@@ -101,7 +101,7 @@ bool MMD2Obj(const std::vector<std::string>& args)
 	}
 	else if (ext == "pmx")
 	{
-		auto pmxModel = std::make_unique<saba::PMXModel>();
+		auto pmxModel = std::make_unique<mmd::PMXModel>();
 		if (!pmxModel->Load(modelPath, mmdDataPath))
 		{
 			std::cout << "Failed to load PMXModel.\n";
@@ -117,7 +117,7 @@ bool MMD2Obj(const std::vector<std::string>& args)
 
 	// Load animation.
 	bool useVMDAnimation = !vmdPaths.empty();
-	auto vmdAnim = std::make_unique<saba::VMDAnimation>();
+	auto vmdAnim = std::make_unique<mmd::VMDAnimation>();
 	if (!vmdAnim->Create(mmdModel))
 	{
 		std::cout << "Failed to create VMDAnimation.\n";
@@ -125,8 +125,8 @@ bool MMD2Obj(const std::vector<std::string>& args)
 	}
 	for (const auto& vmdPath : vmdPaths)
 	{
-		saba::VMDFile vmdFile;
-		if (!saba::ReadVMDFile(&vmdFile, vmdPath.c_str()))
+		mmd::VMDFile vmdFile;
+		if (!mmd::ReadVMDFile(&vmdFile, vmdPath.c_str()))
 		{
 			std::cout << "Failed to read VMD file.\n";
 			return false;
@@ -139,7 +139,7 @@ bool MMD2Obj(const std::vector<std::string>& args)
 	}
 
 	// Load pose.
-	saba::VPDFile vpdFile;
+	mmd::VPDFile vpdFile;
 	if (!vpdPath.empty())
 	{
 		if (!vmdPaths.empty())
@@ -148,7 +148,7 @@ bool MMD2Obj(const std::vector<std::string>& args)
 		}
 		else
 		{
-			if (!saba::ReadVPDFile(&vpdFile, vpdPath.c_str()))
+			if (!mmd::ReadVPDFile(&vpdFile, vpdPath.c_str()))
 			{
 				std::cout << "Failed to read VPD file.\n";
 				return false;
@@ -251,7 +251,7 @@ bool MMD2Obj(const std::vector<std::string>& args)
 
 	// Write faces.
 	size_t subMeshCount = mmdModel->GetSubMeshCount();
-	const saba::MMDSubMesh* subMeshes = mmdModel->GetSubMeshes();
+	const mmd::MMDSubMesh* subMeshes = mmdModel->GetSubMeshes();
 	for (size_t i = 0; i < subMeshCount; i++)
 	{
 		objFile << "\n";
@@ -282,7 +282,7 @@ bool MMD2Obj(const std::vector<std::string>& args)
 
 	objFile << "# mmmd2obj\n";
 	size_t materialCount = mmdModel->GetMaterialCount();
-	const saba::MMDMaterial* materials = mmdModel->GetMaterials();
+	const mmd::MMDMaterial* materials = mmdModel->GetMaterials();
 	for (size_t i = 0; i < materialCount; i++)
 	{
 		const auto& m = materials[i];
@@ -292,7 +292,7 @@ bool MMD2Obj(const std::vector<std::string>& args)
 		mtlFile << "Kd " << m.m_diffuse.r << " " << m.m_diffuse.g << " " << m.m_diffuse.b << "\n";
 		mtlFile << "Ks " << m.m_specular.r << " " << m.m_specular.g << " " << m.m_specular.b << "\n";
 		mtlFile << "d " << m.m_alpha << "\n";
-		mtlFile << "map_Kd " << saba::PathUtil::GetFilename(m.m_texture) << "\n";
+		mtlFile << "map_Kd " << mmd::PathUtil::GetFilename(m.m_texture) << "\n";
 		mtlFile << "\n";
 	}
 	mtlFile.close();
@@ -315,7 +315,7 @@ int main(int argc, char** argv)
 		WCHAR** wArgs = CommandLineToArgvW(cmdline, &wArgc);
 		for (int i = 0; i < argc; i++)
 		{
-			args[i] = saba::ToUtf8String(wArgs[i]);
+			args[i] = mmd::ToUtf8String(wArgs[i]);
 		}
 	}
 #else // _WIN32

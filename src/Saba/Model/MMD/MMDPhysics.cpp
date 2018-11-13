@@ -14,7 +14,7 @@
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 
-namespace saba
+namespace mmd
 {
 	class MMDMotionState : public btMotionState
 	{

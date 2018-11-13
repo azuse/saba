@@ -11,7 +11,7 @@
 
 #include <vector>
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{
@@ -826,16 +826,16 @@ namespace saba
 		File file;
 		if (!file.Open(filename))
 		{
-			SABA_INFO("PMX File Open Fail. {}", filename);
+			INFO("PMX File Open Fail. {}", filename);
 			return false;
 		}
 
 		if (!ReadPMXFile(pmxFile, file))
 		{
-			SABA_INFO("PMX File Read Fail. {}", filename);
+			INFO("PMX File Read Fail. {}", filename);
 			return false;
 		}
-		SABA_INFO("PMX File Read Successed. {}", filename);
+		INFO("PMX File Read Successed. {}", filename);
 
 		return true;
 	}

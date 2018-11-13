@@ -15,7 +15,7 @@
 
 #include <memory>
 
-namespace saba
+namespace mmd
 {
 	struct GLMMDMaterial
 	{

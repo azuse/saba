@@ -17,7 +17,7 @@
 #include <glm/vec4.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-namespace saba
+namespace mmd
 {
 	template <size_t Size>
 	using PMXString = MMDFileString<Size>;

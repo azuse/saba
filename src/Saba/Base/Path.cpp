@@ -19,7 +19,7 @@
 
 #include "UnicodeUtil.h"
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{

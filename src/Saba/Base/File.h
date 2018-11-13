@@ -11,7 +11,7 @@
 #include <cstdint>
 #include <string>
 
-namespace saba
+namespace mmd
 {
 	class File
 	{
@@ -132,7 +132,7 @@ namespace saba
 		bool IsEof();
 
 	private:
-		saba::File	m_file;
+		mmd::File	m_file;
 	};
 }
 

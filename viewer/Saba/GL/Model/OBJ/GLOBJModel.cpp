@@ -7,7 +7,7 @@
 
 #include "../../GLTextureUtil.h"
 
-namespace saba
+namespace mmd
 {
 	GLOBJModel::GLOBJModel()
 	{

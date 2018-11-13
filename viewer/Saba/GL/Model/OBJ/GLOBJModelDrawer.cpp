@@ -11,7 +11,7 @@
 #include "../../GLShaderUtil.h"
 #include <Saba/Base/Log.h>
 
-namespace saba
+namespace mmd
 {
 	GLOBJModelDrawer::GLOBJModelDrawer(GLOBJModelDrawContext* ctxt, std::shared_ptr<GLOBJModel> model)
 		: m_drawContext(ctxt)
@@ -73,7 +73,7 @@ namespace saba
 			}
 			if (!matShader.m_vao.Create())
 			{
-				SABA_WARN("Vertex Array Object Create fail");
+				WARN("Vertex Array Object Create fail");
 				return false;
 			}
 

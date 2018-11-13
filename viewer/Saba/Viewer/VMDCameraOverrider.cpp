@@ -1,6 +1,6 @@
 ﻿#include "VMDCameraOverrider.h"
 
-namespace saba
+namespace mmd
 {
 	VMDCameraOverrider::VMDCameraOverrider()
 	{

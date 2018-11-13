@@ -2,7 +2,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{

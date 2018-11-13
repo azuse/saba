@@ -6,7 +6,7 @@
 #include "File.h"
 #include "UnicodeUtil.h"
 
-namespace saba
+namespace mmd
 {
 	File::File()
 		: m_fp(nullptr)

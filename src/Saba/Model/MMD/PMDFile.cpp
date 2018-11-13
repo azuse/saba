@@ -11,7 +11,7 @@
 #include <sstream>
 #include <iomanip>
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{
@@ -540,21 +540,21 @@ namespace saba
 
 	bool ReadPMDFile(PMDFile* pmdFile, const char * filename)
 	{
-		SABA_INFO("PMD File Open. {}", filename);
+		INFO("PMD File Open. {}", filename);
 
 		File file;
 		if (!file.Open(filename))
 		{
-			SABA_INFO("PMD File Open Fail. {}", filename);
+			INFO("PMD File Open Fail. {}", filename);
 			return false;
 		}
 
 		if (!ReadPMDFile(pmdFile, file))
 		{
-			SABA_INFO("PMD File Read Fail. {}", filename);
+			INFO("PMD File Read Fail. {}", filename);
 			return false;
 		}
-		SABA_INFO("PMD File Read Successed. {}", filename);
+		INFO("PMD File Read Successed. {}", filename);
 
 		return true;
 	}

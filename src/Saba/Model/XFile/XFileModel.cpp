@@ -11,7 +11,7 @@
 #include "../../Base/File.h"
 #include "../../Base/Log.h"
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{
@@ -29,7 +29,7 @@ namespace saba
 		TextFileReader textReader;
 		if (!textReader.Open(filepath))
 		{
-			SABA_WARN("Failed to open file.[{}]", filepath);
+			WARN("Failed to open file.[{}]", filepath);
 			return false;
 		}
 		std::string text = textReader.ReadAll();
@@ -39,8 +39,8 @@ namespace saba
 		tinyxfile::XFileLoader loader;
 		if (!loader.Load(ss, &xfile))
 		{
-			SABA_WARN("Failed to open file.[{}]", filepath);
-			SABA_WARN("XFileLoader message : {}", loader.GetErrorMessage());
+			WARN("Failed to open file.[{}]", filepath);
+			WARN("XFileLoader message : {}", loader.GetErrorMessage());
 			return false;
 		}
 

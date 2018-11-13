@@ -13,7 +13,7 @@
 #include <map>
 #include <memory>
 
-namespace saba
+namespace mmd
 {
 	GLMMDModel::GLMMDModel()
 	{
@@ -176,7 +176,7 @@ namespace saba
 	{
 		if (m_mmdModel == nullptr)
 		{
-			SABA_WARN("Loda Animation Fail. model is null");
+			WARN("Loda Animation Fail. model is null");
 			return false;
 		}
 

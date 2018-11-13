@@ -16,7 +16,7 @@
 #include <string>
 #include <algorithm>
 
-namespace saba
+namespace mmd
 {
 	class PMDModel : public MMDModel
 	{

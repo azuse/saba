@@ -9,7 +9,7 @@
 #include <functional>
 #include <mutex>
 
-namespace saba
+namespace mmd
 {
 	class SingletonFinalizer
 	{

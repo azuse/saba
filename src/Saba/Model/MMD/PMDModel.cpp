@@ -17,7 +17,7 @@
 #include <limits>
 #include <algorithm>
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{
@@ -41,7 +41,7 @@ namespace saba
 				return filepath;
 			}
 
-			SABA_WARN("Toon Texture File Not Found. [{}]", texName);
+			WARN("Toon Texture File Not Found. [{}]", texName);
 			return "";
 		}
 	}
@@ -443,7 +443,7 @@ namespace saba
 		for (const auto& pmdMorph : pmd.m_morphs)
 		{
 			PMDMorph* morph = nullptr;
-			if (pmdMorph.m_morphType == saba::PMDMorph::Base)
+			if (pmdMorph.m_morphType == mmd::PMDMorph::Base)
 			{
 				morph = &m_baseMorph;
 			}
@@ -575,7 +575,7 @@ namespace saba
 			}
 			else
 			{
-				SABA_WARN("Illegal Joint [{}]", pmdJoint.m_jointName.ToUtf8String());
+				WARN("Illegal Joint [{}]", pmdJoint.m_jointName.ToUtf8String());
 			}
 		}
 

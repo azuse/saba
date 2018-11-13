@@ -12,7 +12,7 @@
 #include <vector>
 #include <string>
 
-namespace saba
+namespace mmd
 {
 	class GLSLDefine
 	{

@@ -7,7 +7,7 @@
 
 #include <cstdlib>
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{

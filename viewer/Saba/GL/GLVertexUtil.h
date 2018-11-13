@@ -17,7 +17,7 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 
-namespace saba
+namespace mmd
 {
 	template <typename T>
 	GLBufferObject CreateVBO(const T* buf, size_t count, GLenum usage = GL_STATIC_DRAW)
@@ -302,12 +302,12 @@ namespace saba
 					}
 				}
 
-				return saba::CreateVBO(bufferData);
+				return mmd::CreateVBO(bufferData);
 			}
 
 			VertexBinder MakeVertexBinder() override
 			{
-				return saba::MakeVertexBinder<T>();
+				return mmd::MakeVertexBinder<T>();
 			}
 
 		private:

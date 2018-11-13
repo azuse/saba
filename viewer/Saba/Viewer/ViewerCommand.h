@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-namespace saba
+namespace mmd
 {
 	class ViewerCommand
 	{

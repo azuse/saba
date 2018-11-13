@@ -68,7 +68,7 @@ GLuint CreateShader(GLenum shaderType, const std::string code)
 
 GLuint CreateShaderProgram(const std::string vsFile, const std::string fsFile)
 {
-	saba::TextFileReader vsFileText;
+	mmd::TextFileReader vsFileText;
 	if (!vsFileText.Open(vsFile))
 	{
 		std::cout << "Failed to open shader file. [" << vsFile << "].\n";
@@ -77,7 +77,7 @@ GLuint CreateShaderProgram(const std::string vsFile, const std::string fsFile)
 	std::string vsCode = vsFileText.ReadAll();
 	vsFileText.Close();
 
-	saba::TextFileReader fsFileText;
+	mmd::TextFileReader fsFileText;
 	if (!fsFileText.Open(fsFile))
 	{
 		std::cout << "Failed to open shader file. [" << fsFile << "].\n";
@@ -282,7 +282,7 @@ struct AppContext
 
 	float	m_elapsed = 0.0f;
 	float	m_animTime = 0.0f;
-	std::unique_ptr<saba::VMDCameraAnimation>	m_vmdCameraAnim;
+	std::unique_ptr<mmd::VMDCameraAnimation>	m_vmdCameraAnim;
 
 	bool Setup();
 	void Clear();
@@ -292,11 +292,11 @@ struct AppContext
 
 struct Material
 {
-	explicit Material(const saba::MMDMaterial& mat)
+	explicit Material(const mmd::MMDMaterial& mat)
 		: m_mmdMat(mat)
 	{}
 
-	const saba::MMDMaterial&	m_mmdMat;
+	const mmd::MMDMaterial&	m_mmdMat;
 	GLuint	m_texture = 0;
 	bool	m_textureHasAlpha = false;
 	GLuint	m_spTexture = 0;
@@ -305,8 +305,8 @@ struct Material
 
 struct Model
 {
-	std::shared_ptr<saba::MMDModel>	m_mmdModel;
-	std::unique_ptr<saba::VMDAnimation>	m_vmdAnim;
+	std::shared_ptr<mmd::MMDModel>	m_mmdModel;
+	std::unique_ptr<mmd::VMDAnimation>	m_vmdAnim;
 
 	GLuint	m_posVBO = 0;
 	GLuint	m_norVBO = 0;
@@ -335,11 +335,11 @@ struct Model
 bool AppContext::Setup()
 {
 	// Setup resource directory.
-	m_resourceDir = saba::PathUtil::GetExecutablePath();
-	m_resourceDir = saba::PathUtil::GetDirectoryName(m_resourceDir);
-	m_resourceDir = saba::PathUtil::Combine(m_resourceDir, "resource");
-	m_shaderDir = saba::PathUtil::Combine(m_resourceDir, "shader");
-	m_mmdDir = saba::PathUtil::Combine(m_resourceDir, "mmd");
+	m_resourceDir = mmd::PathUtil::GetExecutablePath();
+	m_resourceDir = mmd::PathUtil::GetDirectoryName(m_resourceDir);
+	m_resourceDir = mmd::PathUtil::Combine(m_resourceDir, "resource");
+	m_shaderDir = mmd::PathUtil::Combine(m_resourceDir, "shader");
+	m_mmdDir = mmd::PathUtil::Combine(m_resourceDir, "mmd");
 
 	m_mmdShader = std::make_unique<MMDShader>();
 	if (!m_mmdShader->Setup(*this))
@@ -398,7 +398,7 @@ Texture AppContext::GetTexture(const std::string & texturePath)
 	if (it == m_textures.end())
 	{
 		stbi_set_flip_vertically_on_load(true);
-		saba::File file;
+		mmd::File file;
 		if (!file.Open(texturePath))
 		{
 			return Texture{ 0, false };
@@ -455,8 +455,8 @@ Texture AppContext::GetTexture(const std::string & texturePath)
 bool MMDShader::Setup(const AppContext& appContext)
 {
 	m_prog = CreateShaderProgram(
-		saba::PathUtil::Combine(appContext.m_shaderDir, "mmd.vert"),
-		saba::PathUtil::Combine(appContext.m_shaderDir, "mmd.frag")
+		mmd::PathUtil::Combine(appContext.m_shaderDir, "mmd.vert"),
+		mmd::PathUtil::Combine(appContext.m_shaderDir, "mmd.frag")
 	);
 	if (m_prog == 0)
 	{
@@ -520,8 +520,8 @@ void MMDShader::Clear()
 bool MMDEdgeShader::Setup(const AppContext& appContext)
 {
 	m_prog = CreateShaderProgram(
-		saba::PathUtil::Combine(appContext.m_shaderDir, "mmd_edge.vert"),
-		saba::PathUtil::Combine(appContext.m_shaderDir, "mmd_edge.frag")
+		mmd::PathUtil::Combine(appContext.m_shaderDir, "mmd_edge.vert"),
+		mmd::PathUtil::Combine(appContext.m_shaderDir, "mmd_edge.frag")
 	);
 	if (m_prog == 0)
 	{
@@ -555,8 +555,8 @@ void MMDEdgeShader::Clear()
 bool MMDGroundShadowShader::Setup(const AppContext& appContext)
 {
 	m_prog = CreateShaderProgram(
-		saba::PathUtil::Combine(appContext.m_shaderDir, "mmd_ground_shadow.vert"),
-		saba::PathUtil::Combine(appContext.m_shaderDir, "mmd_ground_shadow.frag")
+		mmd::PathUtil::Combine(appContext.m_shaderDir, "mmd_ground_shadow.vert"),
+		mmd::PathUtil::Combine(appContext.m_shaderDir, "mmd_ground_shadow.frag")
 	);
 	if (m_prog == 0)
 	{
@@ -827,11 +827,11 @@ void Model::Draw(const AppContext& appContext)
 		glUniform1i(shader->m_uSphereTex, 1);
 		if (mat.m_spTexture != 0)
 		{
-			if (mmdMat.m_spTextureMode == saba::MMDMaterial::SphereTextureMode::Mul)
+			if (mmdMat.m_spTextureMode == mmd::MMDMaterial::SphereTextureMode::Mul)
 			{
 				glUniform1i(shader->m_uSphereTexMode, 1);
 			}
-			else if (mmdMat.m_spTextureMode == saba::MMDMaterial::SphereTextureMode::Add)
+			else if (mmdMat.m_spTextureMode == mmd::MMDMaterial::SphereTextureMode::Add)
 			{
 				glUniform1i(shader->m_uSphereTexMode, 2);
 			}
@@ -1139,10 +1139,10 @@ bool SampleMain(std::vector<std::string>& args)
 	{
 		// Load MMD model
 		Model model;
-		auto ext = saba::PathUtil::GetExt(input.m_modelPath);
+		auto ext = mmd::PathUtil::GetExt(input.m_modelPath);
 		if (ext == "pmd")
 		{
-			auto pmdModel = std::make_unique<saba::PMDModel>();
+			auto pmdModel = std::make_unique<mmd::PMDModel>();
 			if (!pmdModel->Load(input.m_modelPath, appContext.m_mmdDir))
 			{
 				std::cout << "Failed to load pmd file.\n";
@@ -1152,7 +1152,7 @@ bool SampleMain(std::vector<std::string>& args)
 		}
 		else if (ext == "pmx")
 		{
-			auto pmxModel = std::make_unique<saba::PMXModel>();
+			auto pmxModel = std::make_unique<mmd::PMXModel>();
 			if (!pmxModel->Load(input.m_modelPath, appContext.m_mmdDir))
 			{
 				std::cout << "Failed to load pmx file.\n";
@@ -1168,7 +1168,7 @@ bool SampleMain(std::vector<std::string>& args)
 		model.m_mmdModel->InitializeAnimation();
 
 		// Load VMD animation
-		auto vmdAnim = std::make_unique<saba::VMDAnimation>();
+		auto vmdAnim = std::make_unique<mmd::VMDAnimation>();
 		if (!vmdAnim->Create(model.m_mmdModel))
 		{
 			std::cout << "Failed to create VMDAnimation.\n";
@@ -1176,8 +1176,8 @@ bool SampleMain(std::vector<std::string>& args)
 		}
 		for (const auto& vmdPath : input.m_vmdPaths)
 		{
-			saba::VMDFile vmdFile;
-			if (!saba::ReadVMDFile(&vmdFile, vmdPath.c_str()))
+			mmd::VMDFile vmdFile;
+			if (!mmd::ReadVMDFile(&vmdFile, vmdPath.c_str()))
 			{
 				std::cout << "Failed to read VMD file.\n";
 				return false;
@@ -1189,7 +1189,7 @@ bool SampleMain(std::vector<std::string>& args)
 			}
 			if (!vmdFile.m_cameras.empty())
 			{
-				auto vmdCamAnim = std::make_unique<saba::VMDCameraAnimation>();
+				auto vmdCamAnim = std::make_unique<mmd::VMDCameraAnimation>();
 				if (!vmdCamAnim->Create(vmdFile))
 				{
 					std::cout << "Failed to create VMDCameraAnimation.\n";
@@ -1206,12 +1206,12 @@ bool SampleMain(std::vector<std::string>& args)
 		models.emplace_back(std::move(model));
 	}
 
-	double fpsTime = saba::GetTime();
+	double fpsTime = mmd::GetTime();
 	int fpsFrame = 0;
-	double saveTime = saba::GetTime();
+	double saveTime = mmd::GetTime();
 	while (!glfwWindowShouldClose(window))
 	{
-		double time = saba::GetTime();
+		double time = mmd::GetTime();
 		double elapsed = time - saveTime;
 		if (elapsed > 1.0 / 30.0)
 		{
@@ -1236,7 +1236,7 @@ bool SampleMain(std::vector<std::string>& args)
 		{
 			appContext.m_vmdCameraAnim->Evaluate(appContext.m_animTime * 30.0f);
 			const auto mmdCam = appContext.m_vmdCameraAnim->GetCamera();
-			saba::MMDLookAtCamera lookAtCam(mmdCam);
+			mmd::MMDLookAtCamera lookAtCam(mmdCam);
 			appContext.m_viewMat = glm::lookAt(lookAtCam.m_eye, lookAtCam.m_center, lookAtCam.m_up);
 			appContext.m_projMat = glm::perspectiveFovRH(mmdCam.m_fov, float(width), float(height), 1.0f, 10000.0f);
 		}
@@ -1264,7 +1264,7 @@ bool SampleMain(std::vector<std::string>& args)
 		//FPS
 		{
 			fpsFrame++;
-			double time = saba::GetTime();
+			double time = mmd::GetTime();
 			double deltaTime = time - fpsTime;
 			if (deltaTime > 1.0)
 			{
@@ -1304,7 +1304,7 @@ int main(int argc, char** argv)
 		WCHAR** wArgs = CommandLineToArgvW(cmdline, &wArgc);
 		for (int i = 0; i < argc; i++)
 		{
-			args[i] = saba::ToUtf8String(wArgs[i]);
+			args[i] = mmd::ToUtf8String(wArgs[i]);
 		}
 	}
 #else // _WIN32

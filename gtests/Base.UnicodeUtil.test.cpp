@@ -10,8 +10,8 @@ TEST(BaseTest, UnicodeUtil)
 	std::string utf8StrRet;
 	std::wstring wStrRet;
 
-	EXPECT_TRUE(saba::TryToUtf8String(wStr, utf8StrRet));
-	EXPECT_TRUE(saba::TryToWString(utf8Str, wStrRet));
+	EXPECT_TRUE(mmd::TryToUtf8String(wStr, utf8StrRet));
+	EXPECT_TRUE(mmd::TryToWString(utf8Str, wStrRet));
 
 	EXPECT_EQ(utf8Str, utf8StrRet);
 	EXPECT_EQ(wStr, wStrRet);

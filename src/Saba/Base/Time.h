@@ -6,7 +6,7 @@
 #ifndef SABA_BASE_TIME_H_
 #define SABA_BASE_TIME_H_
 
-namespace saba
+namespace mmd
 {
 	double GetTime();
 	double GetTimeMSec();

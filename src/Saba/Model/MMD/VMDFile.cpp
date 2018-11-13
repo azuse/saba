@@ -8,7 +8,7 @@
 #include <Saba/Base/Log.h>
 #include <Saba/Base/File.h>
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{
@@ -27,7 +27,7 @@ namespace saba
 				vmd->m_header.m_header.ToString() != "Vocaloid Motion Data"
 				)
 			{
-				SABA_WARN("VMD Header error.");
+				WARN("VMD Header error.");
 				return false;
 			}
 
@@ -168,13 +168,13 @@ namespace saba
 		{
 			if (!ReadHeader(vmd, file))
 			{
-				SABA_WARN("ReadHeader Fail.");
+				WARN("ReadHeader Fail.");
 				return false;
 			}
 
 			if (!ReadMotion(vmd, file))
 			{
-				SABA_WARN("ReadMotion Fail.");
+				WARN("ReadMotion Fail.");
 				return false;
 			}
 
@@ -182,7 +182,7 @@ namespace saba
 			{
 				if (!ReadBlednShape(vmd, file))
 				{
-					SABA_WARN("ReadBlednShape Fail.");
+					WARN("ReadBlednShape Fail.");
 					return false;
 				}
 			}
@@ -191,7 +191,7 @@ namespace saba
 			{
 				if (!ReadCamera(vmd, file))
 				{
-					SABA_WARN("ReadCamera Fail.");
+					WARN("ReadCamera Fail.");
 					return false;
 				}
 			}
@@ -200,7 +200,7 @@ namespace saba
 			{
 				if (!ReadLight(vmd, file))
 				{
-					SABA_WARN("ReadLight Fail.");
+					WARN("ReadLight Fail.");
 					return false;
 				}
 			}
@@ -209,7 +209,7 @@ namespace saba
 			{
 				if (!ReadShadow(vmd, file))
 				{
-					SABA_WARN("ReadShadow Fail.");
+					WARN("ReadShadow Fail.");
 					return false;
 				}
 			}
@@ -218,7 +218,7 @@ namespace saba
 			{
 				if (!ReadIK(vmd, file))
 				{
-					SABA_WARN("ReadIK Fail.");
+					WARN("ReadIK Fail.");
 					return false;
 				}
 			}
@@ -232,7 +232,7 @@ namespace saba
 		File file;
 		if (!file.Open(filename))
 		{
-			SABA_WARN("VMD File Open Fail. {}", filename);
+			WARN("VMD File Open Fail. {}", filename);
 			return false;
 		}
 

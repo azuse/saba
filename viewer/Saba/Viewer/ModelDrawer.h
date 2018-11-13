@@ -8,7 +8,7 @@
 
 #include "ViewerContext.h"
 
-namespace saba
+namespace mmd
 {
 	enum class ModelDrawerType
 	{

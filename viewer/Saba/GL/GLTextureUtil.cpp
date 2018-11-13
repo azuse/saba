@@ -37,7 +37,7 @@ using namespace tinyddsloader;
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT 0x83F3
 #endif /* GL_EXT_texture_compression_s3tc */
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{
@@ -554,7 +554,7 @@ namespace saba
 
 	bool LoadTextureFromFile(const GLTextureObject& tex, const char* filename, bool genMipMap, bool rgba)
 	{
-		SABA_INFO("LoadTexture: [{}]", filename);
+		INFO("LoadTexture: [{}]", filename);
 		std::string ext = PathUtil::GetExt(filename);
 		bool successed = false;
 		if (ext == "dds")
@@ -569,7 +569,7 @@ namespace saba
 			successed = LoadTextureFromDDS(tex, filename);
 			if (!successed)
 			{
-				SABA_WARN("LoadTextureFromDDS fail.");
+				WARN("LoadTextureFromDDS fail.");
 			}
 #endif // ENABLE_GLI
 		}
@@ -578,17 +578,17 @@ namespace saba
 			successed = LoadTextureFromStb(tex, filename, genMipMap, rgba);
 			if (!successed)
 			{
-				SABA_WARN("LoadTextureFromStb fail.");
+				WARN("LoadTextureFromStb fail.");
 			}
 		}
 
 		if (successed)
 		{
-			SABA_INFO("LoadTexture: [{}] Success", filename);
+			INFO("LoadTexture: [{}] Success", filename);
 		}
 		else
 		{
-			SABA_WARN("LoadTexture: [{}] Fail", filename);
+			WARN("LoadTexture: [{}] Fail", filename);
 		}
 
 		return successed;

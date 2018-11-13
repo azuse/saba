@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <cctype>
 
-namespace saba
+namespace mmd
 {
 	bool ViewerCommand::Parse(const std::string & line)
 	{

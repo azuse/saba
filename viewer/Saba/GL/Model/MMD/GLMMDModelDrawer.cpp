@@ -14,7 +14,7 @@
 
 #include <imgui.h>
 
-namespace saba
+namespace mmd
 {
 	GLMMDModelDrawer::GLMMDModelDrawer(GLMMDModelDrawContext * ctxt, std::shared_ptr<GLMMDModel> mmdModel)
 		: m_drawContext(ctxt)
@@ -202,7 +202,7 @@ namespace saba
 			MMDNode* clickNode = nullptr;
 			for (size_t nodeIdx = 0; nodeIdx < nodeMan->GetNodeCount(); nodeIdx++)
 			{
-				std::function<void(MMDNode*)> ViewNodes = [&ViewNodes, &clickNode, this](saba::MMDNode* node)
+				std::function<void(MMDNode*)> ViewNodes = [&ViewNodes, &clickNode, this](mmd::MMDNode* node)
 				{
 					ImGuiTreeNodeFlags node_flags =
 						ImGuiTreeNodeFlags_OpenOnArrow |

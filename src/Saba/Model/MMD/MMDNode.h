@@ -11,7 +11,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/mat4x4.hpp>
 
-namespace saba
+namespace mmd
 {
 	class MMDNode
 	{

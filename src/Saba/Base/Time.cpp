@@ -7,7 +7,7 @@
 
 #include <chrono>
 
-namespace saba
+namespace mmd
 {
 	double GetTime()
 	{

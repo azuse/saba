@@ -12,7 +12,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace saba
+namespace mmd
 {
 	struct VMDCameraAnimationKey
 	{

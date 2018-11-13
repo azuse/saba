@@ -10,7 +10,7 @@
 
 #include <algorithm>
 
-namespace saba
+namespace mmd
 {
 	void GLOBJShader::Initialize()
 	{
@@ -65,7 +65,7 @@ namespace saba
 			shader->m_prog = glslShaderUtil.CreateProgram("obj_shader");
 			if (shader->m_prog == 0)
 			{
-				SABA_WARN("Shader Create fail.");
+				WARN("Shader Create fail.");
 				return -1;
 			}
 

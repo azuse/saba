@@ -10,7 +10,7 @@
 #include "../../GLVertexUtil.h"
 #include <Saba/Model/OBJ/OBJModel.h>
 
-namespace saba
+namespace mmd
 {
 	class GLOBJModel
 	{

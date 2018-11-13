@@ -7,7 +7,7 @@ TEST(ViewerTest, ViewerCommandTest)
 {
 	{
 		const char* commandLine = "abc";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_TRUE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string("abc"), cmd.GetCommand());
 		EXPECT_EQ(0, cmd.GetArgs().size());
@@ -15,7 +15,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc arg1 arg2";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_TRUE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string("abc"), cmd.GetCommand());
 		EXPECT_EQ(2, cmd.GetArgs().size());
@@ -25,7 +25,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = " abc arg1 arg2 ";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_TRUE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string("abc"), cmd.GetCommand());
 		EXPECT_EQ(2, cmd.GetArgs().size());
@@ -35,7 +35,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc \"arg1\"\t'arg2'";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_TRUE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string("abc"), cmd.GetCommand());
 		EXPECT_EQ(2, cmd.GetArgs().size());
@@ -45,7 +45,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc \"a r\tg1\" 'a r\tg2'";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_TRUE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string("abc"), cmd.GetCommand());
 		EXPECT_EQ(2, cmd.GetArgs().size());
@@ -55,7 +55,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc \"'arg1'\"\t'\"arg2\"'";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_TRUE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string("abc"), cmd.GetCommand());
 		EXPECT_EQ(2, cmd.GetArgs().size());
@@ -65,7 +65,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_FALSE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string(""), cmd.GetCommand());
 		EXPECT_EQ(0, cmd.GetArgs().size());
@@ -73,7 +73,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = " ";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_FALSE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string(""), cmd.GetCommand());
 		EXPECT_EQ(0, cmd.GetArgs().size());
@@ -81,7 +81,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc \"arg1 ";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_FALSE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string(""), cmd.GetCommand());
 		EXPECT_EQ(0, cmd.GetArgs().size());
@@ -89,7 +89,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc \"arg1";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_FALSE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string(""), cmd.GetCommand());
 		EXPECT_EQ(0, cmd.GetArgs().size());
@@ -97,7 +97,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc 'arg1 ";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_FALSE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string(""), cmd.GetCommand());
 		EXPECT_EQ(0, cmd.GetArgs().size());
@@ -105,7 +105,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc 'arg1";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_FALSE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string(""), cmd.GetCommand());
 		EXPECT_EQ(0, cmd.GetArgs().size());
@@ -113,7 +113,7 @@ TEST(ViewerTest, ViewerCommandTest)
 
 	{
 		const char* commandLine = "abc arg1 arg2";
-		saba::ViewerCommand cmd;
+		mmd::ViewerCommand cmd;
 		EXPECT_TRUE(cmd.Parse(commandLine));
 		EXPECT_EQ(std::string("abc"), cmd.GetCommand());
 		EXPECT_EQ(2, cmd.GetArgs().size());

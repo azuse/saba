@@ -14,7 +14,7 @@
 #include <glm/glm.hpp>
 #include <tiny_obj_loader.h>
 
-namespace saba
+namespace mmd
 {
 	namespace
 	{
@@ -38,13 +38,13 @@ namespace saba
 				TextFileReader fr;
 				if (!fr.Open(mtlPath))
 				{
-					SABA_WARN("Failed to open MTL file.");
-					SABA_INFO("Try obj name + .mtl.");
+					WARN("Failed to open MTL file.");
+					INFO("Try obj name + .mtl.");
 					std::string objFileName = PathUtil::GetFilenameWithoutExt(m_objPath);
 					mtlPath = PathUtil::Combine(fileDir, objFileName + ".mtl");
 					if (!fr.Open(mtlPath))
 					{
-						SABA_WARN("Failed to open MTL file.");
+						WARN("Failed to open MTL file.");
 						if (err)
 						{
 							*err = "Failed to open MTL file.";
@@ -71,12 +71,12 @@ namespace saba
 
 	bool OBJModel::Load(const char * filepath)
 	{
-		SABA_INFO("Open OBJ file. {}", filepath);
+		INFO("Open OBJ file. {}", filepath);
 
 		TextFileReader textFileReader;
 		if (!textFileReader.Open(filepath))
 		{
-			SABA_WARN("Failed to open OBJ file. {}", filepath);
+			WARN("Failed to open OBJ file. {}", filepath);
 			return false;
 		}
 
@@ -95,7 +95,7 @@ namespace saba
 
 		if (!ret)
 		{
-			SABA_WARN("Failed to load OBJ file. {}", filepath);
+			WARN("Failed to load OBJ file. {}", filepath);
 			return false;
 		}
 
@@ -194,8 +194,8 @@ namespace saba
 				auto numFaceVertices = shape.mesh.num_face_vertices[faceIdx];
 				if (numFaceVertices != 3)
 				{
-					SABA_WARN("[num_face_vertices] != 3");
-					SABA_WARN("OBJ File Fail. {}", filepath);
+					WARN("[num_face_vertices] != 3");
+					WARN("OBJ File Fail. {}", filepath);
 					return false;
 				}
 
@@ -208,7 +208,7 @@ namespace saba
 				{
 					if (emptyMatIdx == -1)
 					{
-						SABA_INFO("Material Not Assigned.");
+						INFO("Material Not Assigned.");
 						Material emptyMat;
 						emptyMatIdx = (int)m_materials.size();
 						emptyMat.m_ambient = glm::vec3(0.2f);
@@ -237,7 +237,7 @@ namespace saba
 			}
 		}
 
-		SABA_INFO("OBJ File Success. {}", filepath);
+		INFO("OBJ File Success. {}", filepath);
 		return true;
 	}
 

@@ -1,6 +1,6 @@
 ﻿#include "CameraOverrider.h"
 
-namespace saba
+namespace mmd
 {
 	CameraOverrider::~CameraOverrider()
 	{

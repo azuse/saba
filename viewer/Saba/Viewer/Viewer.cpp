@@ -44,7 +44,7 @@
 #include <string>
 #include <thread>
 
-namespace saba
+namespace mmd
 {
 	class ImGUILogSink : public spdlog::sinks::sink
 	{
@@ -163,14 +163,14 @@ namespace saba
 
 	bool Viewer::Initialize(const InitializeParameter& initParam)
 	{
-		SABA_INFO("Execute Path = {}", PathUtil::GetExecutablePath());
+		INFO("Execute Path = {}", PathUtil::GetExecutablePath());
 
 		m_initParam = initParam;
 
-		auto logger = Singleton<saba::Logger>::Get();
+		auto logger = Singleton<mmd::Logger>::Get();
 		m_imguiLogSink = logger->AddSink<ImGUILogSink>();
 
-		SABA_INFO("CurDir = {}", m_context.GetWorkDir());
+		INFO("CurDir = {}", m_context.GetWorkDir());
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -275,7 +275,7 @@ namespace saba
 
 	void Viewer::Uninitislize()
 	{
-		auto logger = Singleton<saba::Logger>::Get();
+		auto logger = Singleton<mmd::Logger>::Get();
 		logger->RemoveSink(m_imguiLogSink.get());
 		m_imguiLogSink.reset();
 
@@ -670,7 +670,7 @@ namespace saba
 			m_context.GetMSAACount() != m_currentMSAACount
 			)
 		{
-			SABA_INFO(
+			INFO(
 				"Create Framebuffer : ({}, {})",
 				m_context.GetFrameBufferWidth(), m_context.GetFrameBufferHeight()
 			);
@@ -709,7 +709,7 @@ namespace saba
 				auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 				if (GL_FRAMEBUFFER_COMPLETE != status)
 				{
-					SABA_WARN("Framebuffer Status : {}", status);
+					WARN("Framebuffer Status : {}", status);
 					glBindFramebuffer(GL_FRAMEBUFFER, 0);
 					return;
 				}
@@ -755,7 +755,7 @@ namespace saba
 				auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 				if (GL_FRAMEBUFFER_COMPLETE != status)
 				{
-					SABA_WARN("MSAA Framebuffer Status : {}", status);
+					WARN("MSAA Framebuffer Status : {}", status);
 					glBindFramebuffer(GL_FRAMEBUFFER, 0);
 					return;
 				}
@@ -775,7 +775,7 @@ namespace saba
 				status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 				if (GL_FRAMEBUFFER_COMPLETE != status)
 				{
-					SABA_WARN("Framebuffer Status : {}", status);
+					WARN("Framebuffer Status : {}", status);
 					glBindFramebuffer(GL_FRAMEBUFFER, 0);
 					return;
 				}
@@ -810,7 +810,7 @@ namespace saba
 				auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 				if (GL_FRAMEBUFFER_COMPLETE != status)
 				{
-					SABA_WARN("Framebuffer Status : {}", status);
+					WARN("Framebuffer Status : {}", status);
 					glBindFramebuffer(GL_FRAMEBUFFER, 0);
 					return;
 				}
@@ -1127,12 +1127,12 @@ namespace saba
 			{
 				if (!ExecuteCommand(cmd))
 				{
-					SABA_INFO("Command Execute Error. [{}]", cmdLine);
+					INFO("Command Execute Error. [{}]", cmdLine);
 				}
 			}
 			else
 			{
-				SABA_INFO("Command Parse Error. [{}]", cmdLine);
+				INFO("Command Parse Error. [{}]", cmdLine);
 			}
 
 		}
@@ -1717,7 +1717,7 @@ namespace saba
 						);
 						if (findRegCmd)
 						{
-							SABA_WARN("RegisterCommand : [{}] is registered command.", cmdName);
+							WARN("RegisterCommand : [{}] is registered command.", cmdName);
 							return;
 						}
 
@@ -1729,7 +1729,7 @@ namespace saba
 						);
 						if (findCutomCmd)
 						{
-							SABA_WARN("RegisterCommand : [{}] is already exists.", cmdName);
+							WARN("RegisterCommand : [{}] is already exists.", cmdName);
 							return;
 						}
 
@@ -1765,7 +1765,7 @@ namespace saba
 					}
 					else
 					{
-						SABA_WARN("RegisterCommand : func is not function.");
+						WARN("RegisterCommand : func is not function.");
 					}
 				};
 
@@ -1817,7 +1817,7 @@ namespace saba
 		}
 		else
 		{
-			SABA_INFO("command.lua not found.");
+			INFO("command.lua not found.");
 		}
 	}
 
@@ -1832,15 +1832,15 @@ namespace saba
 			);
 			if (findIt != m_commands.end())
 			{
-				SABA_INFO("CMD {} Execute", cmd.GetCommand());
+				INFO("CMD {} Execute", cmd.GetCommand());
 				if ((*findIt).m_commandFunc(cmd.GetArgs()))
 				{
-					SABA_INFO("CMD {} Succeeded.", cmd.GetCommand());
+					INFO("CMD {} Succeeded.", cmd.GetCommand());
 					return true;
 				}
 				else
 				{
-					SABA_INFO("CMD {} Failed.", cmd.GetCommand());
+					INFO("CMD {} Failed.", cmd.GetCommand());
 					return false;
 				}
 			}
@@ -1868,13 +1868,13 @@ namespace saba
 				}
 				catch (sol::error e)
 				{
-					SABA_WARN("lua error\n{}", e.what());
+					WARN("lua error\n{}", e.what());
 					return false;
 				}
 			}
 		}
 
-		SABA_INFO("Unknown Command. [{}]", cmd.GetCommand());
+		INFO("Unknown Command. [{}]", cmd.GetCommand());
 		return false;
 	}
 
@@ -1882,13 +1882,13 @@ namespace saba
 	{
 		if (args.empty())
 		{
-			SABA_INFO("Cmd Open Args Empty.");
+			INFO("Cmd Open Args Empty.");
 			return false;
 		}
 
 		std::string filepath = args[0];
 		std::string ext = PathUtil::GetExt(filepath);
-		SABA_INFO("Open File. [{}]", filepath);
+		INFO("Open File. [{}]", filepath);
 		if (ext == "obj")
 		{
 			if (!LoadOBJFile(filepath))
@@ -1936,7 +1936,7 @@ namespace saba
 		}
 		else
 		{
-			SABA_INFO("Unknown File Ext [{}]", ext);
+			INFO("Unknown File Ext [{}]", ext);
 			return false;
 		}
 
@@ -1951,7 +1951,7 @@ namespace saba
 			// 引数が空の場合は選択中のモデルを消す
 			if (m_selectedModelDrawer == nullptr)
 			{
-				SABA_INFO("Cmd Clear : Selected model is null.");
+				INFO("Cmd Clear : Selected model is null.");
 				return false;
 			}
 			else
@@ -2010,14 +2010,14 @@ namespace saba
 	{
 		if (args.empty())
 		{
-			SABA_INFO("Cmd Select : Model name is empty");
+			INFO("Cmd Select : Model name is empty");
 			return false;
 		}
 
 		auto findModelDrawer = FindModelDrawer(args[0]);
 		if (findModelDrawer == nullptr)
 		{
-			SABA_INFO("Cmd Select : Model Not Found. [{}]", args[0]);
+			INFO("Cmd Select : Model Not Found. [{}]", args[0]);
 			return false;
 		}
 		m_selectedModelDrawer = findModelDrawer;
@@ -2129,14 +2129,14 @@ namespace saba
 	{
 		if (m_selectedModelDrawer == nullptr)
 		{
-			SABA_INFO("Cmd Translate : Selected model is null.");
+			INFO("Cmd Translate : Selected model is null.");
 			return false;
 		}
 
 		glm::vec3 translate;
 		if (!ToVec3(args, 0, &translate))
 		{
-			SABA_INFO("Cmd Translate : Invalid Argument.");
+			INFO("Cmd Translate : Invalid Argument.");
 			return false;
 		}
 
@@ -2149,14 +2149,14 @@ namespace saba
 	{
 		if (m_selectedModelDrawer == nullptr)
 		{
-			SABA_INFO("Cmd Rotate : Selected model is null.");
+			INFO("Cmd Rotate : Selected model is null.");
 			return false;
 		}
 
 		glm::vec3 rotate;
 		if (!ToVec3(args, 0, &rotate))
 		{
-			SABA_INFO("Cmd Rotate : Invalid Argument.");
+			INFO("Cmd Rotate : Invalid Argument.");
 			return false;
 		}
 
@@ -2169,14 +2169,14 @@ namespace saba
 	{
 		if (m_selectedModelDrawer == nullptr)
 		{
-			SABA_INFO("Cmd Scale : Selected model is null.");
+			INFO("Cmd Scale : Selected model is null.");
 			return false;
 		}
 
 		glm::vec3 scale;
 		if (!ToVec3(args, 0, &scale))
 		{
-			SABA_INFO("Cmd Scale : Invalid Argument.");
+			INFO("Cmd Scale : Invalid Argument.");
 			return false;
 		}
 
@@ -2207,7 +2207,7 @@ namespace saba
 			}
 			else
 			{
-				SABA_INFO("Unknown arg [{}]", args[0]);
+				INFO("Unknown arg [{}]", args[0]);
 				return false;
 			}
 		}
@@ -2245,7 +2245,7 @@ namespace saba
 	{
 		if (args.empty())
 		{
-			SABA_INFO("Parallel : {}", m_mmdModelConfig.m_parallelUpdateCount);
+			INFO("Parallel : {}", m_mmdModelConfig.m_parallelUpdateCount);
 		}
 		auto argIt = args.begin();
 		for (; argIt != args.end(); ++argIt)
@@ -2263,7 +2263,7 @@ namespace saba
 					auto parallelCount = std::stoul(*argIt);
 					if (parallelCount > MaxParallelCount)
 					{
-						SABA_WARN("parallel : 0 - {}", MaxParallelCount);
+						WARN("parallel : 0 - {}", MaxParallelCount);
 						return false;
 					}
 					m_mmdModelConfig.m_parallelUpdateCount = parallelCount;
@@ -2279,13 +2279,13 @@ namespace saba
 				}
 				catch (std::exception e)
 				{
-					SABA_WARN("exception : {}", e.what());
+					WARN("exception : {}", e.what());
 					return false;
 				}
 			}
 			else
 			{
-				SABA_WARN("unknown arg : {}", *argIt);
+				WARN("unknown arg : {}", *argIt);
 				return false;
 			}
 		}
@@ -2304,11 +2304,11 @@ namespace saba
 		glGetIntegerv(GL_MAX_SAMPLES, &maxSamples);
 		if (msaaCount < 0 || msaaCount > maxSamples)
 		{
-			SABA_WARN("MSAA Max Samples {}", maxSamples);
+			WARN("MSAA Max Samples {}", maxSamples);
 			msaaCount = 4;
 		}
 
-		SABA_INFO("Set MSAA {} {}", msaaEnable, msaaCount);
+		INFO("Set MSAA {} {}", msaaEnable, msaaCount);
 
 
 		m_context.EnableMSAA(msaaEnable);
@@ -2322,14 +2322,14 @@ namespace saba
 		OBJModel objModel;
 		if (!objModel.Load(filename.c_str()))
 		{
-			SABA_WARN("OBJ Load Fail.");
+			WARN("OBJ Load Fail.");
 			return false;
 		}
 
 		auto glObjModel = std::make_shared<GLOBJModel>();
 		if (!glObjModel->Create(objModel))
 		{
-			SABA_WARN("GLOBJModel Create Fail.");
+			WARN("GLOBJModel Create Fail.");
 			return false;
 		}
 
@@ -2339,7 +2339,7 @@ namespace saba
 			);
 		if (!objDrawer->Create())
 		{
-			SABA_WARN("GLOBJModelDrawer Create Fail.");
+			WARN("GLOBJModelDrawer Create Fail.");
 			return false;
 		}
 		m_modelDrawers.emplace_back(std::move(objDrawer));
@@ -2364,14 +2364,14 @@ namespace saba
 		pmdModel->SetParallelUpdateHint(m_mmdModelConfig.m_parallelUpdateCount);
 		if (!pmdModel->Load(filename, mmdDataDir))
 		{
-			SABA_WARN("PMD Load Fail.");
+			WARN("PMD Load Fail.");
 			return false;
 		}
 
 		std::shared_ptr<GLMMDModel> glMMDModel = std::make_shared<GLMMDModel>();
 		if (!glMMDModel->Create(pmdModel))
 		{
-			SABA_WARN("GLMMDModel Create Fail.");
+			WARN("GLMMDModel Create Fail.");
 			return false;
 		}
 
@@ -2381,7 +2381,7 @@ namespace saba
 			);
 		if (!mmdDrawer->Create())
 		{
-			SABA_WARN("GLMMDModelDrawer Create Fail.");
+			WARN("GLMMDModelDrawer Create Fail.");
 			return false;
 		}
 		m_modelDrawers.emplace_back(std::move(mmdDrawer));
@@ -2406,14 +2406,14 @@ namespace saba
 		pmxModel->SetParallelUpdateHint(m_mmdModelConfig.m_parallelUpdateCount);
 		if (!pmxModel->Load(filename, mmdDataDir))
 		{
-			SABA_WARN("PMD Load Fail.");
+			WARN("PMD Load Fail.");
 			return false;
 		}
 
 		std::shared_ptr<GLMMDModel> glMMDModel = std::make_shared<GLMMDModel>();
 		if (!glMMDModel->Create(pmxModel))
 		{
-			SABA_WARN("GLMMDModel Create Fail.");
+			WARN("GLMMDModel Create Fail.");
 			return false;
 		}
 
@@ -2423,7 +2423,7 @@ namespace saba
 			);
 		if (!mmdDrawer->Create())
 		{
-			SABA_WARN("GLMMDModelDrawer Create Fail.");
+			WARN("GLMMDModelDrawer Create Fail.");
 			return false;
 		}
 		m_modelDrawers.emplace_back(std::move(mmdDrawer));
@@ -2448,7 +2448,7 @@ namespace saba
 		}
 		if (mmdModel == nullptr)
 		{
-			SABA_INFO("MMD Model not selected.");
+			INFO("MMD Model not selected.");
 			return false;
 		}
 
@@ -2482,7 +2482,7 @@ namespace saba
 		}
 		if (mmdModel == nullptr)
 		{
-			SABA_INFO("MMD Model not selected.");
+			INFO("MMD Model not selected.");
 			return false;
 		}
 
@@ -2502,14 +2502,14 @@ namespace saba
 		XFileModel xfileModel;
 		if (!xfileModel.Load(filename.c_str()))
 		{
-			SABA_WARN("Failed to load XFile.");
+			WARN("Failed to load XFile.");
 			return false;
 		}
 
 		auto glXFileModel = std::make_shared<GLXFileModel>();
 		if (!glXFileModel->Create(&m_context, xfileModel))
 		{
-			SABA_WARN("Failed to create GLXFileModel.");
+			WARN("Failed to create GLXFileModel.");
 			return false;
 		}
 
@@ -2519,7 +2519,7 @@ namespace saba
 			);
 		if (!xfileDrawer->Create())
 		{
-			SABA_WARN("Failed to create GLXFileModelDrawer.");
+			WARN("Failed to create GLXFileModelDrawer.");
 			return false;
 		}
 		m_modelDrawers.emplace_back(std::move(xfileDrawer));
@@ -2602,7 +2602,7 @@ namespace saba
 			return false;
 		}
 
-		SABA_INFO("bbox [{}, {}, {}] - [{}, {}, {}] radisu [{}] grid [{}]",
+		INFO("bbox [{}, {}, {}] - [{}, {}, {}] radisu [{}] grid [{}]",
 			bboxMin.x, bboxMin.y, bboxMin.z,
 			bboxMax.x, bboxMax.y, bboxMax.z,
 			radius, m_sceneUnitScale);
@@ -2817,7 +2817,7 @@ namespace saba
 			std::vector<std::string> args;
 			for (int i = 0; i < count; i++)
 			{
-				SABA_INFO("Drop File. {}", paths[i]);
+				INFO("Drop File. {}", paths[i]);
 				args.emplace_back(paths[i]);
 			}
 			CmdOpen(args);

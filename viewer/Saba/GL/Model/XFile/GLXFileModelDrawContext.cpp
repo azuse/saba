@@ -10,7 +10,7 @@
 
 #include <algorithm>
 
-namespace saba
+namespace mmd
 {
 	void GLXFileShader::Initialize()
 	{
@@ -66,7 +66,7 @@ namespace saba
 			shader->m_prog = glslShaderUtil.CreateProgram("xfile_shader");
 			if (shader->m_prog == 0)
 			{
-				SABA_WARN("Failed to create xfile_shader.");
+				WARN("Failed to create xfile_shader.");
 				return -1;
 			}
 

@@ -10,7 +10,7 @@
 
 #include <string>
 
-namespace saba
+namespace mmd
 {
 	GLTextureObject CreateTextureFromFile(const char* filename, bool genMipMap = true, bool rgba = false);
 	GLTextureObject CreateTextureFromFile(const std::string& filename, bool genMipMap = true, bool rgba = false);

@@ -22,13 +22,13 @@ public:
 
 TEST(BaseTest, LogTest)
 {
-	auto logger = saba::Singleton<saba::Logger>::Get();
+	auto logger = mmd::Singleton<mmd::Logger>::Get();
 	auto testSink = logger->AddSink<TestSink>();
 
 	EXPECT_NE(nullptr, testSink.get());
 
-	SABA_INFO("test1");
-	SABA_WARN("test2");
+	INFO("test1");
+	WARN("test2");
 	SABA_ERROR("test3");
 
 	EXPECT_EQ(3, testSink->m_buffer.size());
@@ -37,6 +37,6 @@ TEST(BaseTest, LogTest)
 	logger->RemoveSink(testSink.get());
 	EXPECT_EQ(1, logger->GetLogger()->sinks().size());
 
-	SABA_INFO("test4");
+	INFO("test4");
 	EXPECT_EQ(3, testSink->m_buffer.size());
 }

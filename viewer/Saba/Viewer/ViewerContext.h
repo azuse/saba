@@ -16,7 +16,7 @@
 
 #include <glm/vec3.hpp>
 
-namespace saba
+namespace mmd
 {
 	class ViewerContext
 	{
